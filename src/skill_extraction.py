@@ -258,6 +258,20 @@ _FALSE_MATCH_CONTEXT = {
         r"\btransforming patient care through the development of novel specialty pharmaceuticals\b|"
         r"\bimprove patient care in the clinic\b"
     ),
+    # confirmed false positives in full-description verification (2026-11-09):
+    # Billing / Credentialing are named as internal teams the candidate collaborates
+    # with, not a billing skill the candidate must bring.
+    "billing": re.compile(
+        r"\bcollaboration with billing\b|\bbilling, credentialing\b|teams?\s*\(billing\b"
+    ),
+    # Employer EEO/legal boilerplate listing what the employer may do with data;
+    # not a skill requirement for the candidate.
+    "machine learning": re.compile(
+        r"artificial intelligence and machine learning technologies in connection with"
+    ),
+    "artificial intelligence": re.compile(
+        r"artificial intelligence and machine learning technologies in connection with"
+    ),
 }
 
 
