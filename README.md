@@ -104,6 +104,7 @@ Data and models are not in the repo — generate them first (you need
 ```
 python src/skill_extraction.py
 python src/salary_prediction.py
+
 python src/job_classifier.py
 ```
 
