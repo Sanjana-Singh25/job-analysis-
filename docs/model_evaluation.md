@@ -1,4 +1,4 @@
-# Model evaluation (retrained 2026-11-09 on v2.1 `jobs_with_skills.csv`)
+# Model evaluation (retrained 2026-11-09 on v2.1 `jobs_with_skills.csv`; skill-demand numbers shown at v2.2)
 
 ## Salary prediction — RandomForestRegressor (100 trees, random_state=42)
 Rows after salary filter ($15k–$400k): **7,508** · 334 one-hot columns · 80/20 split
@@ -17,10 +17,11 @@ Top-10 industries only · **3,945** rows · stratified 80/20 split
   IT Services ↔ Software Development, Staffing & Recruiting absorbs misroutes from all classes.
 - If accuracy wants a bump later (not done): class_weight="balanced" or larger max_features.
 
-## Skill-demand refresh (v2.1 top 15)
-communication 4,184 · leadership 1,906 · sales 1,796 · customer service 1,766 · excel 1,345 ·
+## Skill-demand refresh (v2.2 top 15, regeneration 2026-11-09)
+communication 4,183 · leadership 1,889 · sales 1,789 · customer service 1,753 · excel 1,345 ·
 problem solving 1,326 · attention to detail 1,314 · microsoft office 1,227 · marketing 1,167 ·
-teamwork 844 · cross-functional 833 · accounting 817 · project management 812 ·
+cross-functional 833 · teamwork 826 · accounting 817 · project management 812 ·
 interpersonal skills 728 · auditing 719
-(Pre-v2 figures were slightly higher, e.g. leadership 2,079, excel 1,448 — see
-`skill_extraction_impact.csv` on Drive.)
+(Models above were trained on the v2.1 regeneration; v2.2 only narrows false-positive skill
+mentions, so model metrics are unaffected for practical purposes. Pre-v2 figures were slightly
+higher, e.g. leadership 2,079, excel 1,448 — see `skill_extraction_impact.csv` on Drive.)
