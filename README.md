@@ -50,8 +50,8 @@ postings, **8,713 postings with salary information** remain
   sales (1,789), customer service (1,753) and excel (1,345) are the most
   requested skills. Tech skills such as SQL and Python also appear in
   non-tech industries.
-- **Salary prediction:** Random Forest Regressor, R² ≈ 0.29, MAE ≈ $30,440
-  (median absolute error $21,509; within ±$50k: 82.0%; unbiased on average).
+- **Salary prediction:** Random Forest Regressor, R² ≈ 0.29, MAE ≈ $30,484
+  (median absolute error $21,327; within ±$50k: 81.7%; unbiased on average).
   Salary depends on many factors that are not in job postings (company size,
   negotiation, benefits), so a modest R² is expected.
 - **Job classification:** TF-IDF + Logistic Regression over the 10 most common

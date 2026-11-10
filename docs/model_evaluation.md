@@ -1,9 +1,9 @@
-# Model evaluation (retrained 2026-11-09 on v2.1 `jobs_with_skills.csv`; skill-demand numbers shown at v2.2)
+# Model evaluation (retrained 2026-11-09 on v2.2 `jobs_with_skills.csv`)
 
 ## Salary prediction — RandomForestRegressor (100 trees, random_state=42)
 Rows after salary filter ($15k–$400k): **7,508** · 334 one-hot columns · 80/20 split
-- **MAE: $30,440** · **RMSE: $42,927** · **R²: 0.293**
-- Median |error| $21,509 · within ±$25k: **56.4%** · within ±$50k: **82.0%** · signed bias ≈ **$0** (unbiased)
+- **MAE: $30,484** · **RMSE: $42,991** · **R²: 0.291**
+- Median |error| $21,327 · within ±$25k: **56.3%** · within ±$50k: **81.7%** · signed bias ≈ **+$60** (unbiased)
 - Honest limit: company size, negotiation and benefits are not in the postings, so salary is
   only weakly predictable — treat output as ballpark.
 
@@ -22,6 +22,6 @@ communication 4,183 · leadership 1,889 · sales 1,789 · customer service 1,753
 problem solving 1,326 · attention to detail 1,314 · microsoft office 1,227 · marketing 1,167 ·
 cross-functional 833 · teamwork 826 · accounting 817 · project management 812 ·
 interpersonal skills 728 · auditing 719
-(Models above were trained on the v2.1 regeneration; v2.2 only narrows false-positive skill
-mentions, so model metrics are unaffected for practical purposes. Pre-v2 figures were slightly
+(Models above were retrained on the v2.2 regeneration — salary MAE moved from $30,440 (v2.1) to
+$30,484; classifier accuracy and the confusion matrix are unchanged. Pre-v2 figures were slightly
 higher, e.g. leadership 2,079, excel 1,448 — see `skill_extraction_impact.csv` on Drive.)
