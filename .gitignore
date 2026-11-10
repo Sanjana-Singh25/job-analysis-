@@ -3,3 +3,7 @@ data
 models
 streamlit ss
 venv
+# local scratch / envs
+.venv/
+__pycache__/
+google_drive/

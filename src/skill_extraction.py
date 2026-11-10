@@ -159,7 +159,7 @@ _FALSE_MATCH_CONTEXT = {
     ),
     "customer service": re.compile(
         r"\bcoordinat\w* with the customer support team to drive ongoing success and adoption\b|"
-        r"\bclient service team on larger clients\b|\bdepartments, including claims, customer service \(gsc\), underwriting\b|\byou won.t get shuffled to some customer service rep when a problem pops up\b"
+        r"\bclient service team on larger clients\b|\bdepartments, including claims, customer service \(gsc\), underwriting\b|\byou won.t get shuffled to some customer service rep when a problem pops up\b|\bsolutions and customer support services\b"
     ),
     "leadership": re.compile(
         r"\bsenior leadership\b|\bsales leadership, business development, revenue operations\b|"
@@ -167,7 +167,8 @@ _FALSE_MATCH_CONTEXT = {
         r"\bstaff and leadership to achieve goals\b|\boperations leadership, engineering and npi teams\b|"
         r"\bleadership development is core to our collective success\b|"
         r"\bworking with leadership on timelines and deliverables\b|"
-        r"\bsales leadership at the property\b|\bsolutions to leadership\b|\bbusiness leadership and other senior management\b|\bcapabilities, enhance leadership skills, and continue their professional journey\b|\bas directed by leadership\b|\bsessions with leadership\b|\brepresentative of ross leadership\b|\bteam and leadership\b|\binternal leadership\b|\bleadership leads collaboration and coordination with sales\b|\bdeveloping leadership skills by engaging in networking calls\b"
+        r"\bsales leadership at the property\b|\bsolutions to leadership\b|\bbusiness leadership and other senior management\b|\bcapabilities, enhance leadership skills, and continue their professional journey\b|\bas directed by leadership\b|\bsessions with leadership\b|\brepresentative of ross leadership\b|\bteam and leadership\b|\binternal leadership\b|\bleadership leads collaboration and coordination with sales\b|\bdeveloping leadership skills by engaging in networking calls\b|"
+        r"\bfinance leadership\b|\bflexibility, agility, and leadership\b|\btransformative leadership: we.ll give you\b"
     ),
     "marketing": re.compile(
         r"\bwork closely with marketing and sales\b|\bwork with marketing,|"
@@ -189,12 +190,15 @@ _FALSE_MATCH_CONTEXT = {
         r"\bnon-sales positions have the opportunity\b|"
         r"\bpartner closely with sales and account management to refine solution architecture\b|"
         r"\bsales teams to coordinate installation of equipment and infrastructure\b|"
-        r"\bsales data\b|\bgame sales\b|\bsales compensation\b|\bsales floor\b"
+        r"\bsales data\b|\bgame sales\b|\bsales compensation\b|\bsales floor\b|"
+        r"\bpost-sales\b|\bsource special request items from sales team\b|\bfrom the sales team\b|"
+        r"\bdevelopment of new sales, marketing\b"
     ),
     "teamwork": re.compile(
         r"\bcore values also foster a culture of professionalism, teamwork, and integrity\b|"
         r"\bbenefit from teamwork and camaraderie\b|"
-        r"\bwhere teamwork is the norm\b|\bwe're team players in everything we do\b"
+        r"\bwhere teamwork is the norm\b|\bwe're team players in everything we do\b|"
+        r"\benthusiastic team player who thrives\b|\bcommitted to teamwork, trust and transparency\b"
     ),
     "cpa": re.compile(
         r"\brealtors, cpa's, builders\b|\bexternal cpa firms\b|"
@@ -223,7 +227,7 @@ _FALSE_MATCH_CONTEXT = {
     "crm": re.compile(r"\bas a global leader in cardiac rhythm technologies\b|\bbusiness operations system, including enterprise resource planning \(erp\), accounting, customer relationship management \(crm\), professional service automation\b"),
     "statistics": re.compile(r"\bcrime statistics act\b"),
     "data analysis": re.compile(r"\banalysis is central to successful leadership in any industry\b"),
-    "customer experience": re.compile(r"\bcustomer experience transformation\b"),
+    "customer experience": re.compile(r"\bcustomer experience transformation\b|\bensuring the best possible customer experience\b"),
     "excel": re.compile(r"\bdo the right thing, excel together and put customers first\b"),
     "outlook": re.compile(r"\bhave a positive outlook\b"),
     "coaching": re.compile(r"\bongoing coaching will be provided\b|\bcontinued coaching from a supportive team\b"),
@@ -232,10 +236,11 @@ _FALSE_MATCH_CONTEXT = {
     "communication": re.compile(
         r"\bwe celebrate clear communication, effort, and teamwork\b|"
         r"\bgeneration of new communication tools and channels\b|"
-        r"\bofficial communication will only be sent from\b|\bline of communication to the current it consultant\b|\bcore values of appreciation & respect, empowerment, diversity, excellence, learning, and communication\b"
+        r"\bofficial communication will only be sent from\b|\bline of communication to the current it consultant\b|\bcore values of appreciation & respect, empowerment, diversity, excellence, learning, and communication\b|"
+        r"\bdocumentation systems for communication\b"
     ),
     "procurement": re.compile(
-        r"\bcomprehensive services in engineering, procurement, and construction\b"
+        r"\bcomprehensive services in engineering, procurement, and construction\b|\bcoordinate with procurement, quality, and other departments\b"
     ),
     "cybersecurity": re.compile(
         r"\bsoftware engineers, data scientists, cybersecurity experts and service professionals\b|"
@@ -246,7 +251,7 @@ _FALSE_MATCH_CONTEXT = {
         r"\bno payroll or taxes experience is needed\b|"
         r"\bwe specialize in contingent hiring, direct hires, statement of work, payroll management\b"
     ),
-    "talent acquisition": re.compile(r"\bpartner with our talent acquisition leader\b"),
+    "talent acquisition": re.compile(r"\bpartner with our talent acquisition leader\b|\bpartnering with our talent acquisition\b|\bworking closely with talent acquisition\b"),
     "curriculum": re.compile(
         r"\bdegree in a business or liberal arts curriculum\b|"
         r"\bon-the-job executive protection training curriculum\b"
@@ -257,6 +262,31 @@ _FALSE_MATCH_CONTEXT = {
     "patient care": re.compile(
         r"\btransforming patient care through the development of novel specialty pharmaceuticals\b|"
         r"\bimprove patient care in the clinic\b"
+    ),
+    # confirmed false positives in full-description verification (2026-11-09):
+    # Billing / Credentialing are named as internal teams the candidate collaborates
+    # with, not a billing skill the candidate must bring.
+    "billing": re.compile(
+        r"\bcollaboration with billing\b|\bbilling, credentialing\b|teams?\s*\(billing\b"
+    ),
+    # Employer EEO/legal boilerplate listing what the employer may do with data;
+    # not a skill requirement for the candidate.
+    "machine learning": re.compile(
+        r"artificial intelligence and machine learning technologies in connection with"
+    ),
+    "artificial intelligence": re.compile(
+        r"artificial intelligence and machine learning technologies in connection with"
+    ),
+    # v2.2 — holdout7 false positives (2026-11-09). Department/function references,
+    # company/culture prose and the noun "workday" (never a skill requirement).
+    "workday": re.compile(
+        r"\bduration of the workday\b|\bthroughout the workday\b"
+    ),
+    "employee relations": re.compile(
+        r"\bemployee relations at \(|partner with hr business partners[^.]{0,40}employee relations|\bemployee relations, legal, payroll\b"
+    ),
+    "ecommerce": re.compile(
+        r"\bin the e-commerce space\b"
     ),
 }
 

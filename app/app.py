@@ -286,6 +286,9 @@ def page_gap(df: pd.DataFrame):
     role = st.text_input("Target job role", value="Data Analyst")
     mine = st.multiselect("Your current skills", sorted(SKILLS_LIST),
                           default=["excel", "communication"])
+    if not role.strip():
+        st.warning("Please enter a target job role.")
+        return
 
     required, n_jobs = get_top_skills_for_role(df, role, top_n=10)
     if required is None:
