@@ -57,6 +57,19 @@ postings, **8,713 postings with salary information** remain
 - **Job classification:** TF-IDF + Logistic Regression over the 10 most common
   industries, accuracy ≈ 71.1% (macro F1 0.67).
 
+## Tech stack & architecture
+
+Python · pandas/NumPy (cleaning, EDA) · scikit-learn (Random Forest regressor,
+TF-IDF + Logistic Regression classifier) · Streamlit + Altair (interactive app) ·
+Power BI (`.pbix`) · Matplotlib/Seaborn (notebooks) · Jupyter.
+
+Pipeline: `cleaned_jobs.csv` → `src/skill_extraction.py` (regex keyword extractor
+with reviewed false-positive context suppressions) → `jobs_with_skills.csv` →
+salary model / industry classifier / skill-gap analyzer → consumed by the
+Streamlit app and exported into the Power BI dataset (`data/dashboard_jobs.csv`,
+`data/dashboard_skills.csv`). Every stage is a standalone script in `src/` with
+a matching notebook in `notebooks/`; evaluation write-ups live in `docs/`.
+
 ## Quality assurance & evaluation
 
 Detailed, reproducible evaluation write-ups live in [`docs/`](docs/):
